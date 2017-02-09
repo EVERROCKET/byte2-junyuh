@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+    <title>Explore Byte Tutorial</title>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Custom styles for this project -->
+    <link href="css/explore.css" rel="stylesheet">
+  </head>
+  
+  <body role="document">
+    
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container" >
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="about">About This Data Set</a></li>
+	    <li><a href="quality">Data Quality</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    
+    <div class="container theme-showcase" role="main">
+      
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+	<h1>Data Pipeline Project Exploratory Analysis Byte Example</h1>
+        <p>This is the Exploratory Analysis Byte of the Data Pipeline class.</p>
+      </div>
+      
+      <div class="page-header">
+	
+      </div> <!-- /page-header -->
+    </div> <!-- /container -->
+    
+    <div class="button-toolbar" role="toolbar" id="headers" name="headers">
+      {% for column in allheaders %}
+      <button type="button" class = "btn-space btn btn-info" id="{{column}}" onclick="updateTable('{{column}}')">{{column}}</button>
+      {% endfor %}
+    </div>
+    
+    <div class="table-responsive">
+	  <table class="table table-striped table-hover">
+	    <thead class="thead-inverse">
+	     <tr> 
+	{% for item in headers %}
+	         <th>{{ item }}</th>
+	{% endfor %}
+	     </tr>
+	    </thead>
+	    <tbody>
+	{% for row in content %}
+	     <tr>
+	  {% for datum in row %}
+	            <td>{{ datum }} </td>
+	  {% endfor %}
+	     </tr>
+	{% endfor %}
+	    </tbody>
+	   </table>
+	</div> 
+<iframe width="500" height="300" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?containerId=googft-gviz-canvas&amp;viz=GVIZ&amp;t=GRAPH&amp;gc=false&amp;gd=false&amp;sdb=1&amp;rmax=100000&amp;uiversion=2&amp;q=select+col0%2C+col2+from+1aOG_c47dIe9bnHa2Uxybr1iKk5NonjiqsNeP0CQQ&amp;qrs=+where+col0+%3E%3D+&amp;qre=+and+col0+%3C%3D+&amp;qe=&amp;state=%7B%22ps%22%3A%221_s_-b6_-3s_1f_-94_4a_4_-7j_-j_h_-4b_-4g_36_s_-13_26_-1p_4f_3h_av_4o_2u_7x_3c_2k_c0_20_d_8v_-4n_33_-1_-4k_0_5y_-4c_p_-c1_19_23_1e_4z_37_g_-g_35_-n_-4o_1v_av_-3b_3b_61_7_3e_-23_1i_1y_8a_-1a_1s_-3n_-c_2d_ac_-1_1a_1o_2i_17_45_-22_1u_-3a_-v_1_68_-3r_6_-70_2_r_-c3_1v_7_-81_-15_t_-c1_-3u_u_-b8_-2x_v_-ae_-46_w_-bj_-4k_x_-bw_-49_y_-bn_-32_z_-ao_-4i_10_-b4_-4n_11_-by_-3e_12_-as_-30_13_-ag_-3b_2_5b_-4e_15_bs_-54_16_c8_-4r_9_-6q_-h_18_3n_-2f_19_4q_-1t_8_-8b_-l_1b_29_2r_a_-7h_-1c_1d_-ce_3r_1e_-cd_4c_2h_3u_18_1g_-9q_4u_1h_-9h_3j_1i_-9y_4e_1j_-9v_3w_1k_-9a_53_1l_-8z_3h_1m_-8r_51_1n_-8b_47_1o_-8e_4o_b_-84_-1_1q_cd_-2e_1r_ch_-2y_c_-7l_9_1c_14_2a_3_6a_-4x_2g_46_1p_1w_b0_-3w_1x_ao_-2q_q_-c1_m_e_9g_-4x_20_87_-o_21_5i_3g_f_8b_-50_31_2a_-4n_24_20_4w_25_s_53_2x_7h_2t_27_-15_4u_28_-19_3w_g_8r_-40_2a_-2a_41_3m_6a_5c_2c_4b_5a_14_-ab_-3q_2e_ak_-m_2f_a2_i_i_-4o_-3s_j_-3k_-48_2i_cc_-g_2j_c8_-11_1z_8e_-1w_2l_bc_20_2m_ca_1f_2n_cb_2l_k_-40_-3r_2p_-54_36_2q_-4f_53_2r_-50_51_2s_3j_3p_2t_43_3r_3c_5u_s_2v_8c_3v_2w_7g_3t_l_-4w_-4x_2y_8f_2u_2z_3t_-56_30_3n_-4m_m_-3o_-4v_32_24_-57_1p_-8i_3q_34_m_-4d_29_-25_4y_2b_3q_5a_n_-52_-4b_38_8_-1j_o_-4a_-57_3a_1h_-v_2o_-4j_3c_5_-6x_-12_3d_67_-e_22_5k_40_3f_-2l_1v_3g_-1o_12_39_14_-1q_3i_bi_4e_3j_ak_42_3k_b8_59_3l_a9_4z_1t_-3y_7_%22%2C%22cx%22%3A0%2C%22cy%22%3A0%2C%22sw%22%3A1080.215169494992%2C%22sh%22%3A566.1469861894437%2C%22z%22%3A0%7D&amp;gco_forceIFrame=true&amp;gco_hasLabelsColumn=true&amp;width=500&amp;height=300"></iframe>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+	function updateTable(str) {
+		console.log("in updateTable");
+		console.log(str);
+
+	    // error checking: ignore buttons that don't have a title!
+		if (str == "") {
+			return;
+		}
+
+	    // find the actual button in this document's HTML
+		button = document.getElementById(str);
+		// for debugging, write its name to the console
+		console.log(button.className);
+		// check if it is disabled (btn-info)
+		if (button.className.includes("btn-info")) {
+			// and enable it (btn-primary)
+			button.className = "btn btn-space btn-primary";
+		} else {
+			// otherwise disable it (btn-info)
+			button.className = "btn btn-space btn-info";
+		}
+
+		// now get all the buttons
+		buttons = document.getElementById("headers").children;
+		// and collect their names in cols
+		cols = [];
+		// loop through them
+		for (button in buttons) {
+			// grab the id (the name we need is there)
+			id = buttons[button].id;
+			// make sure it isn't null
+			if (buttons[button].id != null) {
+				// and that the button is selected 
+				var isPrimary = buttons[button].className.includes("btn-primary");
+				if (isPrimary && (cols.indexOf(id) == -1)) {
+					// if so, add it to our array
+					cols.push(id);
+				}
+			}
+		}
+					
+		$.ajax({
+			url: '/_update_table',
+			dataType: 'json',
+			contentType: 'application/json',
+			data: JSON.stringify({'cols' : cols}),
+			type: 'POST',
+			success: function (res, status) {
+				console.log("successrunning");
+				console.log(res["content"]);
+				console.log(res["headers"]);
+				var cols = res["headers"];
+				var rows = res["content"];
+
+				// get the table, columns and rows
+				table = document.getElementById("data");
+				headers = document.getElementById("cols");
+				body = document.getElementById("rows");
+
+				// delete current contents
+				headers.innerHTML='';
+				body.innerHTML = '';
+
+				// and put the new information in the table
+				for (col in cols) {
+					cell = document.createElement("th");
+					cell.innerHTML = cols[col];
+					headers.appendChild(cell);
+				}
+				for (row in rows) {
+					tr = document.createElement("tr");
+					for (item in rows[row]) {
+						td = document.createElement("td");
+						td.innerHTML = rows[row][item];
+						tr.appendChild(td);
+					}
+					body.appendChild(tr);
+				}
+			},
+			error: function(res, status) {
+				// On Error
+				alert('error');
+			}
+		});
+	}
+				
+				   
+				   
+</script>
+</body>
+</html>
